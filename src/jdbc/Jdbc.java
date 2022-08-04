@@ -12,27 +12,20 @@ public class Jdbc {
 		//testeConexao();
 		
 		DaoCachorro dcao = new DaoCachorro();
-//		Cachorro catioro = new Cachorro("Dog Alemão", "Scooby Doo", "grande");
-//		dcao.salvar(catioro);
 		
-//		List<Cachorro> cachorros = dcao.consultar();
-//		for(Cachorro c: cachorros) {
-//			System.out.println(c.getId());
-//			System.out.println(c.getNome());
-//		}
+		Cachorro cao = new Cachorro("Lhasa Apso", "Lana", "pequeno");
 		
-//		Cachorro c = dcao.consultar(2);
-//		System.out.println(c.getId());
-//		System.out.println(c.getNome());
+		//testeSalvar(dcao, cao);
+		
+		//testeAlterar(dcao, 3, "Loki", "Husky Siberiano", "grande");
+		
+		//testeConsultarTodos(dcao);
+		
+		//testeConsultarUm(dcao, 4);
+		
+		dcao.excluir(4);
 		
 		
-//		Cachorro c = dcao.consultar(4);
-//		c.setNome("Marie");
-//		c.setRaca("Poodle");
-//		c.setPorte("pequeno");
-//		dcao.alterar(c);
-		
-		dcao.excluir(1);
 		
 	}
 
@@ -44,33 +37,34 @@ public class Jdbc {
 		}
 	}
 	
-	static void testeSalvar(DaoCachorro dcao) {
-		Cachorro catioro = new Cachorro("Dog Alemão", "Scooby Doo", "grande");
-		dcao.salvar(catioro);
+	static void testeSalvar(DaoCachorro dcao, Cachorro cachorro) {
+		if(dcao.salvar(cachorro)) {
+			System.out.println("Salvo com sucesso!");
+		}
 	}
 	
-	static void testeAlterar(DaoCachorro dcao) {
-		Cachorro c = dcao.consultar(4);
-		c.setNome("Marie");
-		c.setRaca("Poodle");
-		c.setPorte("pequeno");
-		dcao.alterar(c);
+	static void testeAlterar(DaoCachorro dcao, int id, String nome, String raca, String porte) {
+		Cachorro c = dcao.consultar(id);
+		c.setNome(nome);
+		c.setRaca(raca);
+		c.setPorte(porte);
+		if(dcao.alterar(c)) {
+			System.out.println("Alterado com sucesso!");
+		}
 	}
 	
-	static void testeConsultarUm(DaoCachorro dcao) {
-		Cachorro c = dcao.consultar(2);
-		System.out.println(c.getId());
-		System.out.println(c.getNome());
+	static void testeConsultarUm(DaoCachorro dcao, int id) {
+		Cachorro c = dcao.consultar(id);
+		System.out.println(c);
 	}
 	
 	static void testeConsultarTodos(DaoCachorro dcao) {
 		List<Cachorro> cachorros = dcao.consultar();
 		for(Cachorro c: cachorros) {
-			System.out.println(c.getId());
-			System.out.println(c.getNome());
+			System.out.println(c);
 		}
 	}
-	static void testeExcluir(DaoCachorro dcao) {
-		
+	static void testeExcluir(DaoCachorro dcao, int id) {
+		dcao.excluir(id);		
 	}
 }

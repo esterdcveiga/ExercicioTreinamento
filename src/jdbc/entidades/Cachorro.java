@@ -47,4 +47,9 @@ public class Cachorro {
 	public void setPorte(String porte) {
 		this.porte = porte;
 	}
+	
+	@Override
+	public String toString() {
+		return "Cachorro: id= "+id+", raça= "+raca+", nome= "+nome+", porte= "+porte;
+	}
 }
